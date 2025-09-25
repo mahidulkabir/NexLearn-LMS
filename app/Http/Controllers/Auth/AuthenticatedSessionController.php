@@ -27,6 +27,7 @@ class AuthenticatedSessionController extends Controller
         $request->authenticate();
 
         $request->session()->regenerate();
+        // use some logic here for different role of users 
 
         return redirect()->intended(route('dashboard', absolute: false));
     }
