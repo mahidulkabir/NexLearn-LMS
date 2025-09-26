@@ -13,6 +13,9 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 // Admin Login Routes
 Route::get ('/admin/login',[AdminController::class,'login'])->name('admin.login');
+Route:: middleware(['auth','verified'])->prefix('admin')->name('admin')->group(function(){
+    Route:: get('/dashboard',[AdminController::class,'dashboard'])->name('dashboard');
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
